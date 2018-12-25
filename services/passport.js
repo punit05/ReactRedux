@@ -48,8 +48,8 @@ passport.use(new GithubStrategy({
     
     clientID:keys.githubClientID,
     clientSecret:keys.githubClientSecret,
-    callbackURL:"http://localhost:5000/auth/github/callback", //user will send to after permission
-
+    callbackURL:"/auth/github/callback", //user will send to after permission
+    proxy:true
 },(accessToken,refreshToken,profile,done)=>{
     console.log(accessToken);
     console.log(profile);
