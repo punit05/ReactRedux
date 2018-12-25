@@ -44,31 +44,31 @@ passport.use(new GoogleStrategy({
 );
 //console.log(keys.ClientID);
 //console.log(keys.linkedinClientSecret);
-// passport.use(new GithubStrategy({
+passport.use(new GithubStrategy({
     
-//     clientID:keys.githubClientID,
-//     clientSecret:keys.githubClientSecret,
-//     callbackURL:"http://localhost:5000/auth/github/callback", //user will send to after permission
+    clientID:keys.githubClientID,
+    clientSecret:keys.githubClientSecret,
+    callbackURL:"http://localhost:5000/auth/github/callback", //user will send to after permission
 
-// },(accessToken,refreshToken,profile,done)=>{
-//     console.log(accessToken);
-//     console.log(profile);
-//    User.findOne({githubId:profile.id})
-//    .then((existingUser)=>
-// {
-//     if(existingUser)
-//     {
+},(accessToken,refreshToken,profile,done)=>{
+    console.log(accessToken);
+    console.log(profile);
+   User.findOne({githubId:profile.id})
+   .then((existingUser)=>
+{
+    if(existingUser)
+    {
 
-//         //if the user already exist
-//     done(null,existingUser);
-//     }
-//     else 
-//     {
-//         new User({githubId:profile.id}).save()//save will take the model instance and save it to the database 
-//     .then(user=>done(null,user));
-//     }
-// })
+        //if the user already exist
+    done(null,existingUser);
+    }
+    else 
+    {
+        new User({githubId:profile.id}).save()//save will take the model instance and save it to the database 
+    .then(user=>done(null,user));
+    }
+})
    
-// })
-// );
+})
+);
 
