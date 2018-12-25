@@ -21,7 +21,7 @@ passport.deserializeUser((id,done)=>
 passport.use(new GoogleStrategy({
     clientID:keys.googleClientID,
     clientSecret:keys.googleClientSecret,
-    callbackURL:'/auth/google/callback', //user will send to after permission
+    callbackURL:'https://thawing-woodland-77529.herokuapp.com/auth/google/callback', //user will send to after permission
     proxy:true
 },(accessToken,refreshToken,profile,done)=>{
    User.findOne({googleId:profile.id})
