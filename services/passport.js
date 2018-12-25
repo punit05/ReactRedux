@@ -49,7 +49,7 @@ passport.use(new GithubStrategy({
     clientID:keys.githubClientID,
     clientSecret:keys.githubClientSecret,
     callbackURL:"https://thawing-woodland-77529.herokuapp.com/auth/github/callback", //user will send to after permission
-    proxy:true
+   // proxy:true
 },(accessToken,refreshToken,profile,done)=>{
     console.log(accessToken);
     console.log(profile);
