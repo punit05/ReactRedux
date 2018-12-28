@@ -23,22 +23,23 @@ passport.use(new GoogleStrategy({
     clientSecret:keys.googleClientSecret,
     callbackURL:'/auth/google/callback', //user will send to after permission
     proxy:true
-},(accessToken,refreshToken,profile,done)=>{
-   User.findOne({googleId:profile.id})
-   .then((existingUser)=>
-{
+},
+async (accessToken,refreshToken,profile,done)=>{    //this function contain asynhronous
+   const existingUser= await User.findOne({googleId:profile.id})
+
     if(existingUser)
     {
 
         //if the user already exist
-    done(null,existingUser);
+    return done(null,existingUser);
     }
-    else 
-    {
-        new User({googleId:profile.id}).save()//save will take the model instance and save it to the database 
-    .then(user=>done(null,user));
-    }
-})
+    
+    
+        //whenever we are using database that uses an asynchronous requenst that will always be promise
+    const user=await  new User({googleId:profile.id}).save()//save will take the model instance and save it to the database 
+   done(null,user);
+    
+
    
 })
 );
