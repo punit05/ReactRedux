@@ -24,7 +24,7 @@ app.use(passport.session());
 //console.developers.google.com
 require('./routes/authRoutes')(app);
 //authRoutes(app);
-require('./routes/billingroutes')(app);
+require('./routes/billingRoutes')(app);
 
 if(process.env.NODE_ENV==='production')
 {
