@@ -22,7 +22,7 @@ passport.use(new GoogleStrategy({
     clientID:keys.googleClientID,
     clientSecret:keys.googleClientSecret,
     callbackURL:'/auth/google/callback', //user will send to after permission
-    //proxy:true
+   proxy:true
 },
 async (accessToken,refreshToken,profile,done)=>{    //this function contain asynhronous
    const existingUser= await User.findOne({googleId:profile.id})
